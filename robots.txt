@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ahthree.tech/sitemap.xml
+Sitemap: https://ahthree.github.io/AHthree.Tech/sitemap.xml
