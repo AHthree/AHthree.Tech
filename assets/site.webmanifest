@@ -1,15 +1,9 @@
 {
-  "name": "AHthree.tech",
-  "short_name": "AHthree",
-  "start_url": "https://ahthree.github.io/AHthree.Tech/",
+  "name": "ABUHANI.TECH",
+  "short_name": "ABUHANI",
+  "start_url": "/Abuhani.Tech/",
   "display": "standalone",
-  "background_color": "#08090d",
-  "theme_color": "#08090d",
-  "icons": [
-    {
-      "src": "https://ahthree.github.io/AHthree.Tech/assets/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    }
-  ]
+  "background_color": "#05070b",
+  "theme_color": "#05070b",
+  "icons": []
 }
