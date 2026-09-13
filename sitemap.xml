@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ahthree.github.io/AHthree.Tech/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/digital-marketing/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/business-setup-saudi-arabia/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/investment-real-estate/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/ecommerce/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/ai-automation/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/about/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/contact/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/privacy/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahthree.github.io/AHthree.Tech/terms/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/services/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/digital-marketing/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/business-setup-saudi-arabia/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/ecommerce/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/investment-real-estate/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/ai-automation/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/legal-affairs/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/about/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/contact/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/privacy/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/terms/</loc></url>
+  <url><loc>https://ahthree.github.io/Abuhani.Tech/thank-you/</loc></url>
 </urlset>

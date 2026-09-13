@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://ahthree.github.io/AHthree.Tech/sitemap.xml
+Sitemap: https://ahthree.github.io/Abuhani.Tech/sitemap.xml
