@@ -594,3 +594,317 @@ p,.hero-lede,.section-head p,.statement p,
 /* Ensure small text never becomes pale */
 small,.small,.meta,.label{color:#52627a !important}
 
+
+/* =========================================================
+   ABUHANI.TECH V2 — CLARITY + PERFORMANCE PASS
+   Purpose: eliminate blur/fade glitches, reduce GPU load,
+   keep premium motion only where it helps the visitor.
+   ========================================================= */
+html{scroll-behavior:auto}
+body{background:linear-gradient(135deg,#f7f9fc 0%,#eef2f7 55%,#e7edf4 100%);color:#10213a}
+.noise,.aurora,#space{display:none!important}
+#preloader{display:none!important}
+
+/* Crisp, stable header and brand */
+.site-header{background:rgba(248,250,253,.98)!important;border-bottom:1px solid rgba(16,33,58,.12);box-shadow:0 4px 20px rgba(20,39,65,.06);backdrop-filter:none!important;transition:box-shadow .2s ease,background .2s ease}
+.site-header.scrolled{background:rgba(248,250,253,.99)!important;backdrop-filter:none!important;box-shadow:0 5px 22px rgba(20,39,65,.08)}
+.brand img{filter:none!important;opacity:1!important}
+.navlinks>a:not(.btn){color:#213752!important;font-weight:700}
+.navlinks>a:not(.btn):hover,.navlinks>a.active{color:#0d1e34!important}
+
+/* Never hide content waiting for an observer or hover state */
+.reveal,.reveal.in,.process-card.reveal.in{opacity:1!important;transform:none!important;filter:none!important;visibility:visible!important;transition:none!important;animation:none!important}
+.gradient-text{background:linear-gradient(100deg,#10213a 0%,#936714 50%,#08788f 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.hero h1,.section-head h2,.statement h2,.service-copy h3,.process-card h3{color:#10213a!important}
+.hero-lede,.section-head p,.statement p,.process-card p,.service-copy p{color:#40536c!important}
+.eyebrow,.section-head .eyebrow,.process-card span,.footer-title{color:#875d0b!important}
+
+/* Buttons: no magnetic movement or shine sweep */
+.btn{transform:none!important;transition:background .2s ease,border-color .2s ease,box-shadow .2s ease!important}
+.btn:before{display:none!important}
+.btn:hover{transform:none!important}
+.btn-gold{background:#a97816!important;color:#fff!important;box-shadow:0 8px 20px rgba(142,101,20,.18)!important}
+.btn-gold:hover{background:#91640e!important}
+.btn-outline{background:#fff!important;color:#152b46!important;border-color:rgba(16,33,58,.20)!important}
+
+/* Hero: keep the orbital identity, but make it static and sharp */
+.orbital-system,.orbit,.satellite,.visual-core,.service-icon{animation:none!important}
+.orbital-system{transform:translate(-50%,-50%)!important}
+.satellite{backdrop-filter:none!important;background:#fff!important;color:#314760!important;box-shadow:0 8px 22px rgba(31,48,75,.09)!important}
+.orbital-core{box-shadow:0 18px 45px rgba(184,138,45,.14),inset 0 0 35px rgba(255,255,255,.9)!important}
+
+/* Service slider: no blur, no GPU-heavy cross transforms */
+.service-slider{min-height:650px}
+.service-card{filter:none!important;transform:none!important;transition:opacity .35s ease,visibility 0s linear .35s!important;box-shadow:0 18px 50px rgba(31,48,75,.11)!important}
+.service-card.active{filter:none!important;transform:none!important;animation:none!important;transition:opacity .35s ease,visibility 0s linear 0s!important}
+.service-card:not(.active){transform:none!important}
+.service-icon{text-shadow:none!important}
+.visual-core{animation:none!important;box-shadow:0 0 35px var(--slide-accent-soft)!important}
+.service-cta span{transition:transform .15s ease!important}
+.service-cta:hover span{transform:translate(3px,-2px)!important}
+.slider-prev,.slider-next{transform:none!important;box-shadow:0 6px 18px rgba(31,48,75,.08)!important}
+.slider-prev:hover,.slider-next:hover{transform:none!important}
+.dot.active{box-shadow:none!important}
+.service-progress span{box-shadow:none!important}
+
+/* Process/proof sections: always readable, no floating cards */
+.process-grid{box-shadow:0 12px 35px rgba(31,48,75,.06)!important}
+.process-card,.process-card:hover{transform:none!important;animation:none!important}
+.process-card:hover{box-shadow:none!important;background:rgba(255,255,255,.44)!important}
+
+/* Remove expensive visual filters from overlays and panels */
+.modal-backdrop{backdrop-filter:none!important;background:rgba(20,34,53,.46)!important}
+.wa-panel{backdrop-filter:none!important}
+
+/* Media-ready service visual slots */
+.service-visual{isolation:isolate}
+.service-visual:before{content:'VISUAL MODULE';position:absolute;left:26px;top:24px;z-index:4;font:700 9px/1 'Manrope',sans-serif;letter-spacing:.16em;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 10px;background:rgba(18,31,48,.28)}
+.service-visual:after{opacity:.7!important}
+
+/* Make the site feel immediate on mobile too */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{height:430px;order:-1}
+  .orbital-system{transform:translate(-50%,-50%) scale(.82)!important}
+  .service-slider{min-height:760px}
+  .service-card{grid-template-columns:1fr;}
+  .service-visual{min-height:300px;order:-1}
+  .service-copy{padding:58px 30px 34px}
+}
+@media(max-width:720px){
+  .site-header{position:sticky;top:0}
+  .nav{height:72px}
+  .hero{padding-top:72px}
+  .hero-visual{height:330px}
+  .orbital-system{transform:translate(-50%,-50%) scale(.68)!important}
+  .service-slider{min-height:790px}
+  .service-copy h3{font-size:40px}
+  .service-visual{min-height:260px}
+}
+
+/* Respect reduced motion without relying on JS */
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*{animation:none!important;transition:none!important}}
+
+/* =========================================================
+   ABUHANI.TECH — MOTION / SYMMETRY EDITION
+   Inspired by the clean, trust-led rhythm of premium Saudi
+   corporate sites such as Yahya Gulf — original ABUHANI design.
+   ========================================================= */
+:root{
+  --ah-navy:#12233d;
+  --ah-ink:#17263d;
+  --ah-muted:#66758b;
+  --ah-gold:#b88a35;
+  --ah-gold-soft:#d5b56b;
+  --ah-cream:#f7f4ed;
+  --ah-paper:#ffffff;
+  --ah-line:rgba(18,35,61,.12);
+  --ah-shadow:0 24px 70px rgba(18,35,61,.10);
+  --ah-ease:cubic-bezier(.22,.8,.2,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--ah-cream);color:var(--ah-ink);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 85% 8%,rgba(184,138,53,.10),transparent 24%),radial-gradient(circle at 8% 45%,rgba(22,143,169,.07),transparent 24%)}
+.site-header{background:rgba(247,244,237,.92);border-bottom:1px solid transparent;transition:background .35s var(--ah-ease),border-color .35s var(--ah-ease),box-shadow .35s var(--ah-ease)}
+.site-header.scrolled{background:rgba(247,244,237,.97);border-color:var(--ah-line);box-shadow:0 8px 28px rgba(18,35,61,.06)}
+.brand img{filter:none!important;opacity:1!important}
+.navlinks a{color:var(--ah-ink);transition:color .22s ease,transform .22s ease}
+.navlinks a:hover{color:var(--ah-gold);transform:translateY(-1px)}
+.btn{transition:transform .35s var(--ah-ease),box-shadow .35s var(--ah-ease),background-color .25s ease,border-color .25s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(18,35,61,.12)}
+.btn-gold{background:linear-gradient(135deg,#b88a35,#d2ad5d);color:#fff;border-color:transparent}
+.btn-outline{border-color:rgba(18,35,61,.24);color:var(--ah-ink);background:rgba(255,255,255,.5)}
+.btn-outline:hover{border-color:var(--ah-gold);background:#fff}
+
+/* Hero: symmetrical, spacious and calm */
+.hero{min-height:calc(100svh - 76px);display:flex;align-items:center;padding:110px 0 74px;position:relative}
+.hero:after{content:"";position:absolute;left:50%;bottom:0;width:min(1120px,88vw);height:1px;background:linear-gradient(90deg,transparent,var(--ah-line),transparent);transform:translateX(-50%)}
+.hero-grid{align-items:center;gap:clamp(40px,7vw,110px)}
+.hero h1{font-size:clamp(4rem,7.4vw,7.8rem);line-height:.91;letter-spacing:-.055em;color:var(--ah-navy);max-width:850px}
+.hero h1 em{color:var(--ah-gold);font-style:normal}
+.hero-lede{max-width:690px;color:#596b83;font-size:clamp(1rem,1.35vw,1.18rem);line-height:1.85}
+.eyebrow{letter-spacing:.18em;color:#92702e;font-weight:800}
+.eyebrow i{background:var(--ah-gold)}
+.hero-stats{border-top:1px solid var(--ah-line);padding-top:24px;margin-top:48px}
+.hero-stat{border-right:1px solid var(--ah-line)}
+.hero-stat:last-child{border-right:0}
+.hero-stat b{color:var(--ah-navy)}
+.hero-stat span{color:var(--ah-muted)}
+.orbital-system{background:linear-gradient(145deg,#fffdf8,#eef3f6);border:1px solid rgba(18,35,61,.1);box-shadow:var(--ah-shadow);border-radius:50%;width:min(500px,78vw);height:min(500px,78vw);display:grid;place-items:center;position:relative;overflow:hidden}
+.orbital-system:before{content:"";position:absolute;width:72%;height:72%;border-radius:50%;border:1px solid rgba(184,138,53,.28);box-shadow:inset 0 0 80px rgba(184,138,53,.08)}
+.orbital-system:after{content:"";position:absolute;width:42%;height:42%;border-radius:50%;background:radial-gradient(circle,rgba(184,138,53,.18),rgba(22,143,169,.08),transparent 70%);filter:blur(10px)}
+.orbit{border-color:rgba(18,35,61,.13)!important}
+.orbital-core{background:var(--ah-navy)!important;box-shadow:0 18px 45px rgba(18,35,61,.24)!important;color:#fff!important}
+.satellite{background:#fff!important;color:var(--ah-navy)!important;border:1px solid var(--ah-line);box-shadow:0 12px 25px rgba(18,35,61,.08)}
+.scroll-cue{color:#718096;letter-spacing:.16em}
+
+/* Services: clean card rhythm */
+.services-showcase{padding:125px 0 115px;background:#fff}
+.section-head{align-items:end;margin-bottom:55px}
+.section-head h2,.statement h2{color:var(--ah-navy);letter-spacing:-.045em}
+.section-head h2 span{color:var(--ah-gold)}
+.section-head>p{color:var(--ah-muted);line-height:1.8}
+.capability-marquee{background:var(--ah-navy);color:#f7f4ed;border-color:transparent}
+.marquee-track span{opacity:.86}
+.service-slider{border:1px solid var(--ah-line);border-radius:28px;background:var(--ah-paper);box-shadow:var(--ah-shadow);overflow:hidden}
+.service-card{background:linear-gradient(120deg,#fff,#f5f7f8);transition:opacity .55s var(--ah-ease),transform .65s var(--ah-ease)}
+.service-card:not(.active){transform:translateY(18px)!important}
+.service-copy{padding:clamp(30px,5vw,72px)}
+.service-copy h3{color:var(--ah-navy);font-size:clamp(2rem,4vw,4.5rem);letter-spacing:-.05em}
+.service-copy p{color:#627187;line-height:1.8}
+.service-number{color:var(--ah-gold)!important}
+.service-icon{color:var(--ah-gold)!important;border-color:rgba(184,138,53,.3)!important;background:#fff!important}
+.service-tags span{border-color:var(--ah-line);background:#fff;color:#526176}
+.service-visual{background:radial-gradient(circle at center,rgba(184,138,53,.13),transparent 42%),linear-gradient(135deg,#f2f6f8,#fff);min-height:460px}
+.visual-object{border-color:rgba(18,35,61,.13)!important}
+.visual-core{background:linear-gradient(135deg,var(--ah-gold),#168fa9)!important;box-shadow:0 0 80px rgba(184,138,53,.22)!important}
+.slider-controls{background:#fff;border-top:1px solid var(--ah-line)}
+.slider-controls button{color:var(--ah-navy)}
+.dot{background:rgba(18,35,61,.18)!important}.dot.active{background:var(--ah-gold)!important}
+.service-progress{background:rgba(18,35,61,.08)}.service-progress span{background:var(--ah-gold)}
+
+/* Method / proof */
+.section-dark{background:var(--ah-navy);color:#fff;position:relative;overflow:hidden}
+.section-dark:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 20%,rgba(184,138,53,.13),transparent 35%);pointer-events:none}
+.section-dark .section-head h2,.section-dark .process-card h3{color:#fff}
+.section-dark .section-head h2 span{color:#d5b56b}
+.section-dark .section-head>p,.section-dark .process-card p{color:rgba(255,255,255,.67)}
+.process-card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);border-radius:18px;transition:transform .45s var(--ah-ease),background .35s ease,border-color .35s ease}
+.process-card:hover{transform:translateY(-8px);background:rgba(255,255,255,.075);border-color:rgba(213,181,107,.4)}
+.process-card>span{color:#d5b56b}
+.proof-strip{background:#fff;border-bottom:1px solid var(--ah-line);border-top:1px solid var(--ah-line)}
+.proof-item{border-right-color:var(--ah-line)!important}
+.proof-item b{color:var(--ah-navy)}.proof-item span{color:var(--ah-muted)}
+.statement{background:var(--ah-cream);padding:145px 0}
+.statement p{color:var(--ah-muted);max-width:720px}
+.gradient-text{background:linear-gradient(90deg,var(--ah-gold),#168fa9);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Footer */
+.site-footer{background:#0c192d;color:#fff;border-top:0}
+.site-footer p,.footer-links a,.footer-links span,.footer-bottom{color:rgba(255,255,255,.62)}
+.footer-links a:hover{color:#d5b56b}
+.footer-title{color:#d5b56b}
+
+/* Scroll-reveal system */
+.motion-reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ah-ease),transform .8s var(--ah-ease)}
+.motion-reveal.is-visible{opacity:1;transform:none}
+.motion-reveal.delay-1{transition-delay:.08s}.motion-reveal.delay-2{transition-delay:.16s}.motion-reveal.delay-3{transition-delay:.24s}
+
+/* Page transition */
+body.page-ready{animation:pageIn .65s var(--ah-ease) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+body.page-leaving{opacity:0;transform:translateY(-8px);transition:opacity .28s ease,transform .28s ease}
+
+/* Service detail pages */
+.page-hero{position:relative;overflow:hidden}
+.page-hero:after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,var(--ah-line),transparent)}
+.detail-section{background:#fff}
+.detail-card,.metric-card,.timeline-card{border:1px solid var(--ah-line)!important;box-shadow:0 16px 50px rgba(18,35,61,.07)!important;background:#fff!important;border-radius:18px!important;transition:transform .4s var(--ah-ease),box-shadow .4s var(--ah-ease)}
+.detail-card:hover,.metric-card:hover,.timeline-card:hover{transform:translateY(-6px);box-shadow:0 24px 65px rgba(18,35,61,.11)!important}
+
+/* Accessible reduced motion */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.motion-reveal,body.page-ready,body.page-leaving,.service-card,.btn,.process-card{transition:none!important;animation:none!important;transform:none!important;opacity:1!important}}
+@media(max-width:800px){
+  .hero{padding:90px 0 60px}.hero-grid{grid-template-columns:1fr}.hero-visual{order:-1;display:flex;justify-content:center}.orbital-system{width:min(390px,82vw);height:min(390px,82vw)}
+  .hero h1{font-size:clamp(3.5rem,16vw,5.2rem)}
+  .services-showcase{padding:90px 0}.service-card{grid-template-columns:1fr}.service-visual{min-height:320px}.service-copy{padding:34px 26px}.statement{padding:100px 0}
+  .proof-strip{grid-template-columns:1fr}.proof-item{border-right:0!important;border-bottom:1px solid var(--ah-line)}.proof-item:last-child{border-bottom:0}
+}
+
+
+/* =========================================================
+   ABUHANI.TECH — FINAL STABLE RELEASE
+   Clarity first · Yahya-inspired symmetry · low-cost motion
+   ========================================================= */
+:root{--final-navy:#152944;--final-gold:#ae812b;--final-teal:#148ca3;--final-ink:#1b2b42;--final-muted:#5f6e83;--final-paper:#f7f9fc;--final-line:rgba(21,41,68,.13);--final-ease:cubic-bezier(.16,1,.3,1)}
+html{background:var(--final-paper)}
+body{background:linear-gradient(180deg,#f8fafc 0%,#eef3f8 100%);color:var(--final-ink);opacity:1!important;transform:none!important}
+.noise,.aurora,#space,#preloader{display:none!important}
+.site-header.scrolled{background:rgba(248,250,252,.96)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:0 8px 30px rgba(21,41,68,.06)!important}
+.brand img{filter:none!important;opacity:1!important}
+.hero,.section,.services-showcase,.statement,.page-hero{content-visibility:auto;contain-intrinsic-size:auto 800px}
+.hero{content-visibility:visible}
+.hero h1,.page-hero h1,.section-head h2,.statement h2,.service-copy h3,.sticky-intro h2,.process-card h3,.timeline-card h3,.media-panel strong{opacity:1!important;filter:none!important;text-shadow:none!important}
+p,.hero-lede,.lede,.section-head>p,.service-copy p,.process-card p,.timeline-card p,.capability span,.proof-item span{opacity:1!important;filter:none!important;color:var(--final-muted)}
+.section-dark p,.section-dark .section-head>p,.section-dark .process-card p{color:rgba(255,255,255,.74)!important}
+.gradient-text{color:var(--final-navy)!important;background:none!important;-webkit-text-fill-color:initial!important}
+
+/* No continuous decorative animation. */
+.orbital-system,.orbit,.satellite,.service-icon,.visual-core,.scroll-cue i:after,.process-card{animation:none!important}
+.orbital-system{transform:translate(-50%,-50%)!important}
+.btn:hover,.process-card:hover,.timeline-card:hover,.detail-card:hover,.metric-card:hover{transform:translateY(-3px)!important}
+
+/* Reveal cannot hide words; movement only. */
+.motion-reveal{opacity:1!important;filter:none!important;transform:translateY(12px);transition:transform .55s var(--final-ease)}
+.motion-reveal.is-visible{opacity:1!important;filter:none!important;transform:none}
+
+/* Stable service slider, no blur transitions. */
+.service-slider{min-height:670px}
+.service-card{filter:none!important;transition:opacity .42s ease,transform .52s var(--final-ease),visibility 0s linear .55s!important;will-change:auto}
+.service-card:not(.active){transform:translateX(-18px) scale(.995)!important;opacity:0!important}
+.service-card.active{transform:none!important;opacity:1!important;filter:none!important}
+.service-visual{min-height:460px;background:#e8eef5!important;position:relative}
+.service-visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;display:block}
+.service-media-overlay{position:absolute;left:22px;bottom:22px;z-index:2;background:rgba(15,32,54,.88);color:#fff;padding:10px 13px;border-radius:999px;font:700 9px/1.1 'Manrope',system-ui;letter-spacing:.13em}
+
+/* Dedicated image + video sections on all six service pages. */
+.media-story-section{background:linear-gradient(180deg,#eef3f8,#f8fafc);border-top:1px solid var(--final-line);border-bottom:1px solid var(--final-line)}
+.media-story-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.media-panel{margin:0;background:#fff;border:1px solid var(--final-line);border-radius:24px;overflow:hidden;box-shadow:0 18px 54px rgba(21,41,68,.08)}
+.media-frame{aspect-ratio:16/10;background:#e9eef5;overflow:hidden;position:relative}
+.media-frame img,.media-frame video{display:block;width:100%;height:100%;object-fit:cover;background:#e9eef5}
+.media-frame video{object-fit:cover}
+.media-panel figcaption{padding:24px 26px 28px}
+.media-panel figcaption>span{display:block;color:var(--final-gold);font:800 9px/1.2 'Manrope',system-ui;letter-spacing:.18em;margin-bottom:10px}
+.media-panel strong{display:block;color:var(--final-navy);font:800 clamp(20px,2vw,28px)/1.15 'Manrope',system-ui;margin-bottom:9px}
+.media-panel p{margin:0 0 14px;line-height:1.7;color:var(--final-muted)}
+.media-panel code{display:inline-block;max-width:100%;overflow-wrap:anywhere;padding:8px 10px;border-radius:9px;border:1px solid var(--final-line);background:#f4f7fa;color:#8a6826;font-size:11px}
+.video-frame:after{content:'PLAY WHEN NEEDED · NO AUTOPLAY';position:absolute;right:14px;top:14px;pointer-events:none;background:rgba(15,32,54,.84);color:#fff;border-radius:999px;padding:8px 10px;font:700 8px/1 'Manrope',system-ui;letter-spacing:.11em}
+
+/* Improve contrast for capability + metric sections. */
+.capability{background:rgba(255,255,255,.72)!important;border-color:var(--final-line)!important}
+.capability b,.metric-row strong{color:var(--final-gold)!important}
+.capability span,.metric-row span{color:#43536a!important}
+.timeline-card{background:#fff!important}
+
+/* Avoid expensive glass filters in modals and mobile nav. */
+.modal-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(21,41,68,.58)!important}
+.wa-panel,.modal-panel,.navlinks.open{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+@media(max-width:900px){.media-story-grid{grid-template-columns:1fr}.service-slider{min-height:920px}.service-visual{min-height:330px}}
+@media(max-width:720px){.container{width:min(var(--max),calc(100% - 30px))}.section,.services-showcase{padding:82px 0}.page-hero{padding-top:125px}.service-slider{min-height:900px}.service-card{border-radius:22px}.media-panel{border-radius:18px}.media-panel figcaption{padding:20px}.statement{padding:88px 0}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition-duration:.001ms!important}.motion-reveal{transform:none!important}.service-card{transition:none!important}}
+
+
+/* =========================================================
+   ABUHANI.TECH FINAL PERFORMANCE LAYER
+   Deliberately calm: no blur loops, no particle engines,
+   no continuous motion. Interaction remains responsive.
+   ========================================================= */
+.marquee-track{animation:none!important;transform:none!important;width:100%!important}
+.marquee-track span{display:block!important;white-space:normal!important;text-align:center}
+.marquee-track span+span{display:none!important}
+.service-card.active{animation:none!important}
+.service-card{will-change:auto!important}
+.orbital-system,.orbit,.satellite,.visual-object,.visual-object:before,.visual-object:after,.radar-shape,.image-placeholder:before,.image-placeholder:after,.loader-mark,.scroll-cue i:after{animation:none!important}
+.satellite{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.hero-visual{contain:layout paint}
+.service-visual,.media-frame{contain:paint}
+.service-visual img,.media-frame img,.media-frame video{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.btn:before{display:none!important}
+.btn,.slider-controls button,.wa-launcher,.wa-option,.modal-close{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,color .18s ease!important}
+@media(max-width:720px){
+  .hero h1{font-size:clamp(52px,15vw,82px)}
+  .hero-visual{height:430px}
+  .orbital-system{width:330px;height:330px}
+  .orbital-core{inset:99px;font-size:36px}
+  .satellite{font-size:8px;padding:8px 10px}
+  .service-slider{min-height:760px}
+  .service-card{min-height:720px}
+  .service-copy{padding:54px 24px 28px}
+  .service-copy h3{font-size:clamp(38px,11vw,58px)}
+  .service-visual{min-height:300px}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none!important}
+}
