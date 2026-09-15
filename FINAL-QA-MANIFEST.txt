@@ -1,0 +1,35 @@
+AHthree.tech — FINAL QA BASELINE
+
+Source baseline:
+- Existing AHthree/AbuHani.Tech repository structure supplied by the owner.
+- Existing six repository media assets are intentionally preserved and are NOT duplicated in this package.
+- Prior stable website direction retained: premium dark/gold theme, prominent AHthree.tech identity, six services, service-specific video pages, GitHub Pages compatibility.
+
+Stability fixes in this build:
+1. Removed duplicate AHthree.tech text beside the SVG logo.
+2. Hero image is fully contained inside its frame and receives subtle, controlled motion.
+3. Service images use contained framing to prevent important content from being cropped.
+4. Service videos use contain framing and no forced autoplay.
+5. Videos are true intent-loaded: source bytes are not requested until play/pointer intent.
+6. Page loader no longer waits for the window load event.
+7. Mobile navigation is deterministic and closes after selection.
+8. Reveal animations have a reduced-motion fallback.
+9. Horizontal overflow is explicitly prevented.
+10. Marquees use a fixed-width moving track and pause on hover.
+11. Brand logo sizing is controlled across desktop/mobile/footer.
+12. All existing six service media filenames are expected exactly as .webp and .mp4.
+
+Repository media expected:
+assets/images/ai-automation.webp
+assets/images/business-setup-saudi-arabia.webp
+assets/images/digital-marketing.webp
+assets/images/ecommerce.webp
+assets/images/investment-real-estate.webp
+assets/images/legal-affairs.webp
+
+assets/videos/ai-automation.mp4
+assets/videos/business-setup-saudi-arabia.mp4
+assets/videos/digital-marketing.mp4
+assets/videos/ecommerce.mp4
+assets/videos/investment-real-estate.mp4
+assets/videos/legal-affairs.mp4
