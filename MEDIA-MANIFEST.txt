@@ -1,0 +1,12 @@
+assets/images/digital-marketing.webp
+assets/images/business-setup-saudi-arabia.webp
+assets/images/ecommerce.webp
+assets/images/investment-real-estate.webp
+assets/images/ai-automation.webp
+assets/images/legal-affairs.webp
+assets/videos/digital-marketing.mp4
+assets/videos/business-setup-saudi-arabia.mp4
+assets/videos/ecommerce.mp4
+assets/videos/investment-real-estate.mp4
+assets/videos/ai-automation.mp4
+assets/videos/legal-affairs.mp4
