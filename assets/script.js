@@ -1,52 +1,20 @@
-(function(){
-  "use strict";
-  document.documentElement.classList.add("js");
-
-  function revealPage(){ document.body.classList.add("loaded"); }
-  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(revealPage, 180); });
-  else setTimeout(revealPage, 180);
-
-  var menu=document.querySelector(".menu");
-  var links=document.querySelector(".navlinks");
-  if(menu && links){
-    menu.addEventListener("click",function(){
-      var open=links.classList.toggle("open");
-      menu.setAttribute("aria-expanded", String(open));
-      menu.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-    });
-    links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){
-      links.classList.remove("open");
-      menu.setAttribute("aria-expanded","false");
-      menu.setAttribute("aria-label","Open navigation");
-    });});
-  }
-
-  var reduce=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reveals=document.querySelectorAll(".reveal");
-  if(!reduce && "IntersectionObserver" in window){
-    var io=new IntersectionObserver(function(entries){ entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-    });},{threshold:.08,rootMargin:"0px 0px -40px"});
-    reveals.forEach(function(el){io.observe(el);});
-  } else { reveals.forEach(function(el){el.classList.add("in");}); }
-
-  // True video-on-intent loading: no video bytes are requested until play is requested.
-  document.querySelectorAll("video[data-lazy-video]").forEach(function(video){
-    var loaded=false;
-    function loadVideo(){
-      if(loaded) return;
-      var source=video.querySelector("source[data-src]");
-      if(source){ source.src=source.getAttribute("data-src"); source.removeAttribute("data-src"); }
-      loaded=true;
-      video.load();
-    }
-    video.addEventListener("play",function(){ loadVideo(); },{once:true});
-    video.addEventListener("pointerdown",loadVideo,{once:true});
-  });
-
-  // Active navigation state.
-  var path=location.pathname.replace(/\/+$/, "/");
-  document.querySelectorAll(".navlinks a[data-nav]").forEach(function(a){
-    try{ var u=new URL(a.href, location.href); if(u.pathname===path) a.classList.add("active"); }catch(e){}
-  });
+(()=>{'use strict';
+const qs=(s,c=document)=>c.querySelector(s),qsa=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const header=qs('.site-header');let lastY=0;addEventListener('scroll',()=>{if(!header)return;header.classList.toggle('compact',scrollY>20);lastY=scrollY},{passive:true});
+const menu=qs('.menu'),nav=qs('.navlinks');menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});qsa('.navlinks a').forEach(a=>a.addEventListener('click',()=>nav?.classList.remove('open')));
+// Service presentation: one light DOM state, no timers running when the tab is hidden.
+const cards=qsa('[data-service-card]'),dots=qsa('.focus-dot'),track=qs('.orbit-track');let cur=0,paused=false,timer=null;const SLIDE=5667;
+function activate(i){if(!cards.length)return;cur=(i+cards.length)%cards.length;cards.forEach((c,n)=>{const on=n===cur;c.classList.toggle('active',on);c.setAttribute('aria-hidden',String(!on))});dots.forEach((d,n)=>d.classList.toggle('active',n===cur));qsa('.orbit-node').forEach((n,k)=>n.classList.toggle('is-active',k===cur))}
+function restart(){clearInterval(timer);if(reduced||paused||document.hidden)return;timer=setInterval(()=>activate(cur+1),SLIDE)}
+activate(0);restart();
+qsa('.focus-next').forEach(b=>b.addEventListener('click',()=>{activate(cur+1);restart()}));qsa('.focus-prev').forEach(b=>b.addEventListener('click',()=>{activate(cur-1);restart()}));dots.forEach(d=>d.addEventListener('click',()=>{activate(Number(d.dataset.goto));restart()}));qs('.focus-pause')?.addEventListener('click',e=>{paused=!paused;e.currentTarget.textContent=paused?'▶':'Ⅱ';e.currentTarget.setAttribute('aria-label',paused?'Resume automatic service rotation':'Pause automatic service rotation');restart()});qsa('.orbit-node').forEach((n,i)=>n.addEventListener('click',()=>activate(i)));document.addEventListener('visibilitychange',restart);
+// Autoplay service videos only when the visitor reaches the deep visual story.
+const videos=qsa('.service-autoplay');if('IntersectionObserver' in window&&!reduced){const vio=new IntersectionObserver(entries=>entries.forEach(e=>{const v=e.target;if(e.isIntersecting&&e.intersectionRatio>.55){v.play().catch(()=>{})}else{v.pause()}}),{threshold:[0,.55,.8]});videos.forEach(v=>vio.observe(v))}else if(reduced){videos.forEach(v=>v.pause())}
+// Reveal: opacity stays visible by default; JS only adds a small transform.
+const reveals=qsa('.reveal');if('IntersectionObserver'in window&&!reduced){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});reveals.forEach(x=>io.observe(x))}else reveals.forEach(x=>x.classList.add('in'));
+// Appointment modal.
+const modal=qs('#appointmentModal');function openModal(){if(!modal)return;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');setTimeout(()=>qs('input[name="name"]',modal)?.focus(),80)}function closeModal(){modal?.classList.remove('open');modal?.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}qsa('[data-book]').forEach(b=>b.addEventListener('click',e=>{const href=b.getAttribute('href');if(modal){e.preventDefault();openModal()}else if(href){location.href=href}}));qsa('[data-modal-close]').forEach(b=>b.addEventListener('click',closeModal));addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+// WhatsApp concierge.
+const waBtn=qs('.wa-launcher'),waPanel=qs('.wa-panel');waBtn?.addEventListener('click',()=>{const open=waPanel.classList.toggle('open');waBtn.setAttribute('aria-expanded',String(open))});function sendWA(text){window.open('https://wa.me/966549187860?text='+encodeURIComponent(text),'_blank','noopener')};qsa('.wa-option').forEach(b=>b.addEventListener('click',()=>sendWA(b.dataset.message||b.textContent.trim())));const wf=qs('.wa-custom');wf?.addEventListener('submit',e=>{e.preventDefault();const input=qs('input',wf),v=input?.value.trim();if(v)sendWA('Hello ABUHANI.TECH, '+v)});
 })();
