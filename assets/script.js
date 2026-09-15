@@ -1,44 +1,52 @@
-(()=>{"use strict";
-const qs=(s,c=document)=>c.querySelector(s),qsa=(s,c=document)=>[...c.querySelectorAll(s)];
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const header=qs('.site-header');
-addEventListener('scroll',()=>header?.classList.toggle('scrolled',scrollY>24),{passive:true});
-const menu=qs('.menu'),nav=qs('.navlinks');
-menu?.addEventListener('click',()=>{const open=nav?.classList.toggle('open');menu.setAttribute('aria-expanded',String(!!open))});
-qsa('.navlinks a').forEach(a=>a.addEventListener('click',()=>nav?.classList.remove('open')));
+(function(){
+  "use strict";
+  document.documentElement.classList.add("js");
 
-/* Progressive enhancement: text is readable before JS. Motion only adds a small transform. */
-if(!reduce&&'IntersectionObserver' in window){
- const els=qsa('.reveal,.process-card,.proof-item,.timeline-card,.capability,.media-panel');
- els.forEach(el=>el.classList.add('motion-reveal'));
- const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -3% 0px'});
- els.forEach(el=>io.observe(el));
-}
+  function revealPage(){ document.body.classList.add("loaded"); }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(revealPage, 180); });
+  else setTimeout(revealPage, 180);
 
-/* Service slider: one inexpensive timer, paused when tab is hidden. */
-const cards=qsa('.service-card'),dots=qsa('.dot'),bar=qs('.service-progress span');
-let cur=0,timer=null,paused=false,preloadTimer=null;const SLIDE_MS=7000;
-function preloadNext(){clearTimeout(preloadTimer);if(!cards.length||cards.length<2)return;preloadTimer=setTimeout(()=>{const next=(cur+1)%cards.length;const img=qs('img',cards[next]);const src=img?.currentSrc||img?.src;if(!src)return;const warm=new Image();warm.decoding='async';warm.src=src},650)}
-function show(i){if(!cards.length)return;cur=(i+cards.length)%cards.length;cards.forEach((c,n)=>{c.classList.toggle('active',n===cur);c.setAttribute('aria-hidden',String(n!==cur))});dots.forEach((d,n)=>d.classList.toggle('active',n===cur));if(bar&&!reduce){bar.style.transition='none';bar.style.width='0%';requestAnimationFrame(()=>{bar.style.transition=`width ${SLIDE_MS-250}ms linear`;bar.style.width='100%'})}preloadNext()}
-function restart(){clearInterval(timer);if(!paused&&!reduce&&!document.hidden&&cards.length>1)timer=setInterval(()=>show(cur+1),SLIDE_MS)}
-qs('.slider-next')?.addEventListener('click',()=>{show(cur+1);restart()});
-qs('.slider-prev')?.addEventListener('click',()=>{show(cur-1);restart()});
-dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);restart()}));
-qs('.pause')?.addEventListener('click',e=>{paused=!paused;e.currentTarget.textContent=paused?'▶':'Ⅱ';e.currentTarget.setAttribute('aria-label',paused?'Resume automatic rotation':'Pause automatic rotation');restart()});
-document.addEventListener('visibilitychange',restart);show(0);restart();
+  var menu=document.querySelector(".menu");
+  var links=document.querySelector(".navlinks");
+  if(menu && links){
+    menu.addEventListener("click",function(){
+      var open=links.classList.toggle("open");
+      menu.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+    links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){
+      links.classList.remove("open");
+      menu.setAttribute("aria-expanded","false");
+      menu.setAttribute("aria-label","Open navigation");
+    });});
+  }
 
-/* Appointment modal */
-const modal=qs('#appointmentModal');
-function openModal(){if(!modal)return;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');setTimeout(()=>qs('input[name="name"]',modal)?.focus(),40)}
-function closeModal(){modal?.classList.remove('open');modal?.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
-qsa('[data-book]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openModal()}));
-qsa('[data-modal-close]').forEach(b=>b.addEventListener('click',closeModal));
-addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  var reduce=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals=document.querySelectorAll(".reveal");
+  if(!reduce && "IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){ entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });},{threshold:.08,rootMargin:"0px 0px -40px"});
+    reveals.forEach(function(el){io.observe(el);});
+  } else { reveals.forEach(function(el){el.classList.add("in");}); }
 
-/* WhatsApp concierge */
-const waBtn=qs('.wa-launcher'),waPanel=qs('.wa-panel');
-waBtn?.addEventListener('click',()=>{const open=waPanel?.classList.toggle('open');waBtn.setAttribute('aria-expanded',String(!!open))});
-const sendWA=t=>window.open('https://wa.me/966549187860?text='+encodeURIComponent(t),'_blank','noopener');
-qsa('.wa-option').forEach(b=>b.addEventListener('click',()=>sendWA(b.dataset.message||b.textContent.trim())));
-qs('.wa-custom')?.addEventListener('submit',e=>{e.preventDefault();const input=qs('input',e.currentTarget),v=input?.value.trim();if(v)sendWA('Hello ABUHANI.TECH, '+v)});
+  // True video-on-intent loading: no video bytes are requested until play is requested.
+  document.querySelectorAll("video[data-lazy-video]").forEach(function(video){
+    var loaded=false;
+    function loadVideo(){
+      if(loaded) return;
+      var source=video.querySelector("source[data-src]");
+      if(source){ source.src=source.getAttribute("data-src"); source.removeAttribute("data-src"); }
+      loaded=true;
+      video.load();
+    }
+    video.addEventListener("play",function(){ loadVideo(); },{once:true});
+    video.addEventListener("pointerdown",loadVideo,{once:true});
+  });
+
+  // Active navigation state.
+  var path=location.pathname.replace(/\/+$/, "/");
+  document.querySelectorAll(".navlinks a[data-nav]").forEach(function(a){
+    try{ var u=new URL(a.href, location.href); if(u.pathname===path) a.classList.add("active"); }catch(e){}
+  });
 })();

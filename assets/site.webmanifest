@@ -1,9 +1,3 @@
 {
-  "name": "ABUHANI.TECH",
-  "short_name": "ABUHANI",
-  "start_url": "/Abuhani.Tech/",
-  "display": "standalone",
-  "background_color": "#05070b",
-  "theme_color": "#05070b",
-  "icons": []
+  "name":"AHthree.tech","short_name":"AHthree","start_url":"./","display":"standalone","background_color":"#07080c","theme_color":"#07080c","icons":[{"src":"favicon.svg","sizes":"any","type":"image/svg+xml"}]
 }

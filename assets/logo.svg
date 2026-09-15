@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 132" role="img" aria-label="ABUHANI.TECH"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#b8892f"/><stop offset=".55" stop-color="#b8892f"/><stop offset="1" stop-color="#168fa9"/></linearGradient></defs><g fill="none" stroke="url(#g)" stroke-width="5"><path d="M27 100 67 24l40 76M46 68h43"/><path d="M122 28v70M122 28h34c22 0 31 30 6 36 29 4 26 34 0 34h-40"/></g><text x="205" y="84" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700" letter-spacing="5" fill="#162b46">ABUHANI</text><text x="505" y="84" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700" letter-spacing="2" fill="url(#g)">.TECH</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 88" role="img" aria-labelledby="title desc">
+<title>AHthree.tech</title><desc>AHthree.tech brand logo</desc>
+<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#f3d978"/><stop offset="1" stop-color="#c7a13a"/></linearGradient></defs>
+<rect x="2" y="2" width="84" height="84" rx="19" fill="#10121a" stroke="#c7a13a" stroke-width="2"/>
+<path d="M21 61 34 27h9l14 34h-9l-4-10H31l-4 10zm13-18h8l-4-11zM59 27h13l7 17-7 17H59l6-17z" fill="url(#g)"/>
+<text x="104" y="57" fill="#f5f1e8" font-family="Georgia,Times New Roman,serif" font-size="42" font-weight="700" letter-spacing="-1.5">AHthree</text>
+<text x="283" y="57" fill="#f3d978" font-family="Georgia,Times New Roman,serif" font-size="42" font-weight="700">.tech</text>
+</svg>
